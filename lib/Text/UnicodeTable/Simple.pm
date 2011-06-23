@@ -188,7 +188,7 @@ __END__
 
 =head1 NAME
 
-Text::UnicodeTable::Simple -
+Text::UnicodeTable::Simple - Create a formatted table using characters.
 
 =head1 SYNOPSIS
 
@@ -197,6 +197,27 @@ Text::UnicodeTable::Simple -
 =head1 DESCRIPTION
 
 Text::UnicodeTable::Simple is
+
+L<Text::ASCIITable> is a nice module. But it cannot deal with Full width fonts,
+for example Japanese Hiragana, kanji, Hangle, Chinese.
+
+=head1 INTERFACE
+
+=head2 Methods
+
+=head3 new()
+
+=head3 setCols()
+
+=head3 addRow(@collist | \@collist)
+
+Add one row to the table.
+
+=head3 addRowLine()
+
+Add a line after the current row.
+
+=head3 draw()
 
 =head1 AUTHOR
 
