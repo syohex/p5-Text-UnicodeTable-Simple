@@ -2,8 +2,8 @@ This is Perl module Text::UnicodeTable::Simple.
 
 INSTALLATION
 
-Text::UnicodeTable::Simple installation is straightforward. If your CPAN shell is set up,
-you should just be able to do
+Text::UnicodeTable::Simple installation is straightforward.
+If your CPAN shell is set up, you should just be able to do
 
     % cpan Text::UnicodeTable::Simple
 
@@ -18,7 +18,8 @@ Then install it:
 
 DOCUMENTATION
 
-Text::UnicodeTable::Simple documentation is available as in POD. So you can do:
+Text::UnicodeTable::Simple documentation is available as in POD.
+So you can do:
 
     % perldoc Text::UnicodeTable::Simple
 
