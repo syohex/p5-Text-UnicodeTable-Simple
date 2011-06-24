@@ -10,6 +10,9 @@ use Carp ();
 use Scalar::Util qw(looks_like_number);
 use Unicode::EastAsianWidth;
 
+use constant ALIGN_LEFT  => 1;
+use constant ALIGN_RIGHT => 2;
+
 sub new {
     my $class = shift;
 
