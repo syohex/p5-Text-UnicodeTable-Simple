@@ -26,10 +26,53 @@ sub setCols {
     my $self = shift;
     my @cols = _check_argument(@_);
 
-    my $width = scalar @cols;
+    $self->{width} = scalar @cols;
+    $self->{cols} = [ $self->_divide_multiline(\@cols) ];
+}
 
-    $self->{width} = $width;
-    $self->{cols}  = [ @cols ];
+sub _divide_multiline {
+    my ($self, $elements_ref) = @_;
+
+    my @each_lines;
+    my $longest = -1;
+    for my $element (@{$elements_ref}) {
+        my @divided = $element ne '' ? (split "\n", $element) : ('');
+        push @each_lines, [ @divided ];
+
+        $longest = scalar(@divided) if $longest < scalar(@divided);
+    }
+
+    _adjust_cols(\@each_lines, $longest);
+
+    my @rows;
+    my @alignments;
+    for my $i (0..($longest-1)) {
+        my @cells;
+        for my $j (0..($self->{width}-1)) {
+            $alignments[$j] ||= _decide_alignment($each_lines[$j]->[$i]);
+            push @cells, Text::UnicodeTable::Simple::Cell->new(
+                text      => $each_lines[$j]->[$i],
+                alignment => $alignments[$j],
+            );
+        }
+
+        push @rows, [ @cells ];
+    }
+
+    return @rows;
+}
+
+sub _decide_alignment {
+    return looks_like_number($_[0]) ? ALIGN_RIGHT : ALIGN_LEFT;
+}
+
+sub _adjust_cols {
+    my ($cols_ref, $longest) = @_;
+
+    for my $cols (@{$cols_ref}) {
+        my $spaces = $longest - scalar(@{$cols});
+        push @{$cols}, '' for 1..$spaces;
+    }
 }
 
 sub addRow {
@@ -42,7 +85,7 @@ sub addRow {
 
     push @rows, undef for 1..($self->{width} - scalar @rows);
 
-    push @{$self->{rows}}, [ @rows ];
+    push @{$self->{rows}}, $self->_divide_multiline(\@rows);
 }
 
 sub _check_argument {
@@ -98,10 +141,8 @@ sub draw {
 sub _generate_row_string {
     my ($self, $row_ref) = @_;
 
+    my $str = "|";
     my $index = 0;
-    my $str;
-
-    $str .= "|";
     for my $row_elm (@{$row_ref}) {
         $str .= _format($row_elm, $self->_get_column_length($index));
         $str .= '|';
@@ -113,16 +154,16 @@ sub _generate_row_string {
 }
 
 sub _format {
-    my ($str, $width) = @_;
+    my ($cell, $width) = @_;
 
+    my $str = $cell->text;
     $str = " $str ";
     my $len = _str_width($str);
+
     my $retval;
-    if (looks_like_number($_[0])) {
-        # 'NUMBER' is right adjusted
+    if ($cell->alignment == ALIGN_RIGHT) {
         $retval = (' ' x ($width - $len)) . $str;
     } else {
-        # Not 'NUMBER' is right adjusted
         $retval = $str . (' ' x ($width - $len));
     }
 
@@ -150,26 +191,52 @@ sub _get_column_length {
 sub _set_column_length {
     my $self = shift;
 
-    my $width = $self->{width};
-    my $rows  = $self->{rows};
+    my @cols_length = $self->_column_length($self->{cols});
+    my @rows_length = $self->_column_length($self->{rows});
 
-    my $rows_num = scalar @{$rows};
+    # add space before and after string
+    my @max = map { $_ + 2 } _select_max(\@cols_length, \@rows_length);
+
+    $self->{column_length} = \@max;
+}
+
+sub _column_length {
+    my ($self, $matrix_ref) = @_;
+
+    my $width  = $self->{width};
+    my $height = scalar @{$matrix_ref};
 
     my @each_cols_length;
     for (my $i = 0; $i < $width; $i++) {
-        my $max = _str_width($self->{cols}->[$i]);
-        for (my $j = 0; $j < $rows_num; $j++) {
-            next unless ref $rows->[$j] eq 'ARRAY';
+        my $max = -1;
+        for (my $j = 0; $j < $height; $j++) {
+            next unless ref $matrix_ref->[$j] eq 'ARRAY';
 
-            my $len = _str_width($rows->[$j]->[$i]);
+            my $cell = $matrix_ref->[$j]->[$i];
+            my $len = _str_width($cell->text);
             $max = $len if $len > $max;
         }
 
-        # add space before and after string
-        push @each_cols_length, $max + 2;
+        $each_cols_length[$i] = $max;
     }
 
-    $self->{column_length} = \@each_cols_length;
+    return @each_cols_length;
+}
+
+sub _select_max {
+    my ($a, $b) = @_;
+
+    my ($a_length, $b_length) = map { scalar @{$_} } ($a, $b);
+    if ( $a_length != $b_length) {
+        Carp::croak("Error: compare different length arrays");
+    }
+
+    my @max;
+    for my $i (0..($a_length - 1)) {
+        push @max, $a->[$i] >= $b->[$i] ? $a->[$i] : $b->[$i];
+    }
+
+    return @max;
 }
 
 sub _str_width {
