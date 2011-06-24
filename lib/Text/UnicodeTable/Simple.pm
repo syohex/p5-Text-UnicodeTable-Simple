@@ -77,9 +77,11 @@ sub draw {
     $self->_set_separater();
 
     # header
-    $str .= $self->{separater};
-    $str .= $self->_generate_row_string($self->{cols});
-    $str .= $self->{separater};
+    if (scalar $self->{cols} != 0) {
+        $str .= $self->{separater};
+        $str .= $self->_generate_row_string($_) for @{$self->{cols}};
+        $str .= $self->{separater};
+    }
 
     # body
     for my $row (@{$self->{rows}}) {
