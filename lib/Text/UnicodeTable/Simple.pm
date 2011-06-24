@@ -83,7 +83,7 @@ sub addRow {
         Carp::croak("Too many elements")
     }
 
-    push @rows, undef for 1..($self->{width} - scalar @rows);
+    push @rows, '' for 1..($self->{width} - scalar @rows);
 
     push @{$self->{rows}}, $self->_divide_multiline(\@rows);
 }
