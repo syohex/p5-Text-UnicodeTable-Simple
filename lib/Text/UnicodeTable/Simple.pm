@@ -183,6 +183,28 @@ sub _str_width {
     return $ret;
 }
 
+# utility class
+{
+    package # hide from pause
+        Text::UnicodeTable::Simple::Cell;
+
+    sub new {
+        my ($class, %args) = @_;
+        bless {
+            text      => $args{text},
+            alignment => $args{alignment},
+        }, $class;
+    }
+
+    sub text {
+        $_[0]->{text};
+    }
+
+    sub alignment {
+        $_[0]->{alignment};
+    }
+}
+
 1;
 
 __END__
