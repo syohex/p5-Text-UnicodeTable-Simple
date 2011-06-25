@@ -290,7 +290,8 @@ Text::UnicodeTable::Simple - Create a formatted table using characters.
 
 =head1 DESCRIPTION
 
-Text::UnicodeTable::Simple is
+Text::UnicodeTable::Simple generate character table.
+This module can deal with B<Full Width Font>.
 
 L<Text::ASCIITable> is a nice module. But it cannot deal with Full width fonts,
 for example Japanese Hiragana, kanji, Hangle, Chinese.
@@ -301,7 +302,11 @@ for example Japanese Hiragana, kanji, Hangle, Chinese.
 
 =head3 new()
 
+Creates and returns a new table instance.
+
 =head3 setCols()
+
+Set the columns for the table. (compare with <th> in HTML)
 
 =head3 addRow(@collist | \@collist)
 
@@ -312,6 +317,8 @@ Add one row to the table.
 Add a line after the current row.
 
 =head3 draw()
+
+Return a string of this table.
 
 =head1 AUTHOR
 
@@ -327,5 +334,9 @@ This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
 =head1 SEE ALSO
+
+L<Text::ASCIITable>
+
+L<Text::SimpleTable>
 
 =cut
