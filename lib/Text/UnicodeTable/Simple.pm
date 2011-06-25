@@ -102,7 +102,8 @@ sub _check_argument {
         @ret = @_;
     }
 
-    return @ret;
+    # replace 'undef' with 0 length string ''
+    return map { defined $_ ? $_ : '' } @ret;
 }
 
 sub addRowLine {
