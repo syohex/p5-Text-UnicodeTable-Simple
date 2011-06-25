@@ -5,7 +5,6 @@ use warnings;
 use lib qw(../lib);
 
 use utf8;
-use YAML;
 use Text::UnicodeTable::Simple;
 
 binmode STDOUT, ":utf8";
@@ -14,7 +13,6 @@ my $t = Text::UnicodeTable::Simple->new;
 
 $t->setCols('Id','Name','Price');
 $t->addRow(1,'りんご',24.4);
-#die YAML::Dump($t);
 $t->addRow(2,'パイナップル',21.2);
 $t->addRowLine();
 $t->addRow(3,'パッションフルーツ',12.3);
