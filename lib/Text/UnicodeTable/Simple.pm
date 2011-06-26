@@ -87,7 +87,7 @@ sub add_row {
     if ( !exists $self->{width}) {
         $self->{width} = scalar @rows;
     } elsif ($self->{width} < scalar @rows) {
-        Carp::croak("Too many elements")
+        Carp::croak("Error: Too many elements")
     }
 
     push @rows, '' for 1..($self->{width} - scalar @rows);
@@ -103,7 +103,7 @@ sub _check_argument {
         if (scalar @args == 1) {
             @ret = @{$args[0]}
         } else {
-            Carp::croak("Multiple ArrayRef arguments");
+            Carp::croak("Error: Multiple ArrayRef arguments");
         }
     } else {
         @ret = @_;
