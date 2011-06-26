@@ -84,7 +84,9 @@ sub add_row {
     my $self = shift;
     my @rows = _check_argument(@_);
 
-    if ($self->{width} > scalar @rows) {
+    if ( !exists $self->{width}) {
+        $self->{width} = scalar @rows;
+    } elsif ($self->{width} < scalar @rows) {
         Carp::croak("Too many elements")
     }
 
