@@ -9,8 +9,9 @@ use Text::UnicodeTable::Simple;
     ok($t, "constructor");
     isa_ok($t, "Text::UnicodeTable::Simple");
 
-    can_ok($t, 'setCols');
-    $t->setCols('apple', 'orange', 'melon');
+    can_ok($t, 'set_header');
+    can_ok($t, 'setCols'); # alias
+    $t->set_header('apple', 'orange', 'melon');
 
     my @rows;
     push @rows, $_->text for @{$t->{cols}->[0]};
@@ -19,7 +20,7 @@ use Text::UnicodeTable::Simple;
 
 {
     my $t = Text::UnicodeTable::Simple->new();
-    $t->setCols(['apple', 'orange', 'melon']);
+    $t->set_header(['apple', 'orange', 'melon']);
 
     my @rows;
     push @rows, $_->text for @{$t->{cols}->[0]};
@@ -29,7 +30,7 @@ use Text::UnicodeTable::Simple;
 {
     my $t = Text::UnicodeTable::Simple->new();
     eval {
-        $t->setCols(['apple'], ['orange']);
+        $t->set_header(['apple'], ['orange']);
     };
     like($@, qr{Multiple ArrayRef arguments}, 'multiple ArrayRef');
 }
