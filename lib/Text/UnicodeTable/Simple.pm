@@ -13,6 +13,11 @@ use Unicode::EastAsianWidth;
 use constant ALIGN_LEFT  => 1;
 use constant ALIGN_RIGHT => 2;
 
+# alias for Text::ASCIITable
+*setCols    = \&set_header;
+*addRow     = \&add_row;
+*addRowLine = \&add_row_line;
+
 sub new {
     my $class = shift;
 
@@ -22,7 +27,7 @@ sub new {
     }, $class;
 }
 
-sub setCols {
+sub set_header {
     my $self = shift;
     my @cols = _check_argument(@_);
 
@@ -75,7 +80,7 @@ sub _adjust_cols {
     }
 }
 
-sub addRow {
+sub add_row {
     my $self = shift;
     my @rows = _check_argument(@_);
 
@@ -106,7 +111,7 @@ sub _check_argument {
     return map { defined $_ ? $_ : '' } @ret;
 }
 
-sub addRowLine {
+sub add_row_line {
     my $self = shift;
 
     my $line = bless [], 'Text::UnicodeTable::Simple::Line';
@@ -305,15 +310,17 @@ for example Japanese Hiragana, kanji, Hangle, Chinese.
 
 Creates and returns a new table instance.
 
-=head3 setCols()
+=head3 set_header() [alias: addCols ]
 
-Set the columns for the table. (compare with <th> in HTML)
+Set the headers for the table. (compare with <th> in HTML).
+Input strings should be String, not octet stream.
 
-=head3 addRow(@collist | \@collist)
+=head3 add_row(@collist | \@collist) [alias: addRow ]
 
 Add one row to the table.
+Input strings should be String, not octet stream.
 
-=head3 addRowLine()
+=head3 add_row_line() [alias: addRowLine ]
 
 Add a line after the current row.
 
