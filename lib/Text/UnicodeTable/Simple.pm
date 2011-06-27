@@ -165,7 +165,11 @@ sub draw {
         }
     }
 
-    $str .= $self->{separater};
+    if (scalar @{$self->{rows}} != 0) {
+        $str .= $self->{separater};
+    }
+
+    return $str;
 }
 
 sub _generate_row_string {
