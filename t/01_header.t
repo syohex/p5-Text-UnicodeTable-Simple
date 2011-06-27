@@ -14,7 +14,7 @@ use Text::UnicodeTable::Simple;
     $t->set_header('apple', 'orange', 'melon');
 
     my @rows;
-    push @rows, $_->text for @{$t->{cols}->[0]};
+    push @rows, $_->text for @{$t->{header}->[0]};
     is_deeply(\@rows, ['apple', 'orange', 'melon'], 'use array');
 }
 
@@ -23,7 +23,7 @@ use Text::UnicodeTable::Simple;
     $t->set_header(['apple', 'orange', 'melon']);
 
     my @rows;
-    push @rows, $_->text for @{$t->{cols}->[0]};
+    push @rows, $_->text for @{$t->{header}->[0]};
     is_deeply(\@rows, ['apple', 'orange', 'melon'], 'use ArrayRef');
 }
 

@@ -22,8 +22,8 @@ sub new {
     my $class = shift;
 
     bless {
-        cols => [],
-        rows => [],
+        header => [],
+        rows   => [],
     }, $class;
 }
 
@@ -36,7 +36,7 @@ sub set_header {
     }
 
     $self->{width} = scalar @headers;
-    $self->{cols} = [ $self->_divide_multiline(\@headers) ];
+    $self->{header} = [ $self->_divide_multiline(\@headers) ];
 
     return $self;
 }
@@ -150,9 +150,9 @@ sub draw {
     $self->_set_separater();
 
     # header
-    if (scalar $self->{cols} != 0) {
+    if (scalar $self->{header} != 0) {
         $str .= $self->{separater};
-        $str .= $self->_generate_row_string($_) for @{$self->{cols}};
+        $str .= $self->_generate_row_string($_) for @{$self->{header}};
         $str .= $self->{separater};
     }
 
@@ -225,7 +225,7 @@ sub _get_column_length {
 sub _set_column_length {
     my $self = shift;
 
-    my @cols_length = $self->_column_length($self->{cols});
+    my @cols_length = $self->_column_length($self->{header});
     my @rows_length = $self->_column_length($self->{rows});
 
     # add space before and after string
