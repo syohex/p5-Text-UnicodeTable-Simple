@@ -363,4 +363,6 @@ L<Text::ASCIITable>
 
 L<Text::SimpleTable>
 
+L<Text::Table>
+
 =cut
