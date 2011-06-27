@@ -166,7 +166,9 @@ sub draw {
     }
 
     if (scalar @{$self->{rows}} != 0) {
-        $str .= $self->{separater};
+        unless (ref $self->{rows}->[-1] eq 'Text::UnicodeTable::Simple::Line') {
+            $str .= $self->{separater};
+        }
     }
 
     return $str;
