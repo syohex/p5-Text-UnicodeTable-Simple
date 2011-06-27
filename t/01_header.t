@@ -29,6 +29,12 @@ use Text::UnicodeTable::Simple;
 
 {
     my $t = Text::UnicodeTable::Simple->new();
+
+    eval {
+        $t->set_header();
+    };
+    like($@, qr{Input array has no element}, 'no element');
+
     eval {
         $t->set_header(['apple'], ['orange']);
     };
