@@ -31,6 +31,10 @@ sub set_header {
     my $self = shift;
     my @headers = _check_argument(@_);
 
+    if (scalar @headers == 0) {
+        Carp::croak("Error: Input array has no element");
+    }
+
     $self->{width} = scalar @headers;
     $self->{cols} = [ $self->_divide_multiline(\@headers) ];
 }
