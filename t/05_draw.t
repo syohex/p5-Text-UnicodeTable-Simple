@@ -51,16 +51,36 @@ TABLE
 {
     my $t = Text::UnicodeTable::Simple->new();
     $t->set_header(qw/1 2/);
+    $t->add_row(qw/a b/);
+    $t->add_row_line();
+    $t->add_row(qw/c d/);
+
+    my $expected =<<'TABLE';
++---+---+
+| 1 | 2 |
++---+---+
+| a | b |
++---+---+
+| c | d |
++---+---+
+TABLE
+    is($t->draw, $expected, 'add_row_line');
+}
+
+{
+    my $t = Text::UnicodeTable::Simple->new();
+    $t->set_header(qw/1 2/);
+    $t->add_row(qw/a b/);
     $t->add_row_line();
 
     my $expected =<<'TABLE';
 +---+---+
 | 1 | 2 |
 +---+---+
-+---+---+
+| a | b |
 +---+---+
 TABLE
-    is($t->draw, $expected, 'add_row_line');
+    is($t->draw, $expected, 'ignore row_line after last row');
 }
 
 {
