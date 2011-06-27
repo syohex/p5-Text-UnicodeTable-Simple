@@ -29,10 +29,10 @@ sub new {
 
 sub set_header {
     my $self = shift;
-    my @cols = _check_argument(@_);
+    my @headers = _check_argument(@_);
 
-    $self->{width} = scalar @cols;
-    $self->{cols} = [ $self->_divide_multiline(\@cols) ];
+    $self->{width} = scalar @headers;
+    $self->{cols} = [ $self->_divide_multiline(\@headers) ];
 }
 
 sub _divide_multiline {
