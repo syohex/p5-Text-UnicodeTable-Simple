@@ -37,6 +37,8 @@ sub set_header {
 
     $self->{width} = scalar @headers;
     $self->{cols} = [ $self->_divide_multiline(\@headers) ];
+
+    return $self;
 }
 
 sub _divide_multiline {
@@ -97,6 +99,8 @@ sub add_row {
     push @rows, '' for 1..($self->{width} - scalar @rows);
 
     push @{$self->{rows}}, $self->_divide_multiline(\@rows);
+
+    return $self;
 }
 
 sub _check_set_header {
