@@ -10,14 +10,29 @@ use Text::UnicodeTable::Simple;
     can_ok($t, 'add_row');
     can_ok($t, 'addRow'); # alias
 
+    $t->set_header(qw/1 2 3 4/);
     $t->add_row(qw/a b c d/);
-    ok($t->{width} == 4, 'set table width');
+
+    my @first_row = map { $_->text } @{$t->{rows}->[0]};
+    is_deeply(\@first_row, [qw/a b c d/], 'set row');
+
+    $t->add_row([ qw/e f g h/ ]);
+    my @second_row = map { $_->text } @{$t->{rows}->[1]};
+    is_deeply(\@second_row, [qw/e f g h/], 'set row with ArrayRef');
 }
 
 {
     my $t = Text::UnicodeTable::Simple->new();
-    $t->add_row([ qw/a b c/ ]);
-    ok($t->{width} == 3, 'argument is ArrayRef');
+
+    $t->set_header(qw/1 2 3 4/);
+    $t->add_row(qw/a b c/);
+
+    my @first_row = map { $_->text } @{$t->{rows}->[0]};
+    is_deeply(\@first_row, [qw/a b c/, ''], 'set row shorter than header');
+
+    $t->add_row();
+    my @second_row = map { $_->text } @{$t->{rows}->[1]};
+    is_deeply(\@second_row, ['', '', '', ''], 'set row with no element');
 }
 
 {
@@ -26,12 +41,25 @@ use Text::UnicodeTable::Simple;
     can_ok($t, 'add_row_line');
     can_ok($t, 'addRowLine'); # alias
 
+    $t->set_header('a');
+
     $t->add_row_line;
     isa_ok($t->{rows}->[0], 'Text::UnicodeTable::Simple::Line');
 }
 
 {
     my $t = Text::UnicodeTable::Simple->new();
+
+    eval {
+        $t->add_row(qw/a b c d e/);
+    };
+    like $@, qr{'set_header' method previously}, 'not call set_header(add_row)';
+
+    eval {
+        $t->add_row_line();
+    };
+    like $@, qr{'set_header' method previously},
+        'not call set_header(add_row_line)';
 
     $t->set_header(qw/aaa bbb ccc/);
 
@@ -44,8 +72,6 @@ use Text::UnicodeTable::Simple;
         $t->add_row(['a'], ['b']);
     };
     like $@, qr{Multiple ArrayRef arguments}, 'set multiple ArrayRef';
-
-
 }
 
 done_testing;
