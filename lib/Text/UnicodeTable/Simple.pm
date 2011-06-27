@@ -132,11 +132,15 @@ sub add_row_line {
 
     my $line = bless [], 'Text::UnicodeTable::Simple::Line';
     push @{$self->{rows}}, $line;
+
+    return $self;
 }
 
 sub draw {
     my $self = shift;
     my $str;
+
+    $self->_check_set_header;
 
     $self->_set_column_length();
     $self->_set_separater();
