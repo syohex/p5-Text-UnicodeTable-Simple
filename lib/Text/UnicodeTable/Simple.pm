@@ -88,15 +88,23 @@ sub add_row {
     my $self = shift;
     my @rows = _check_argument(@_);
 
-    if ( !exists $self->{width}) {
-        $self->{width} = scalar @rows;
-    } elsif ($self->{width} < scalar @rows) {
+    $self->_check_set_header;
+
+    if ($self->{width} < scalar @rows) {
         Carp::croak("Error: Too many elements")
     }
 
     push @rows, '' for 1..($self->{width} - scalar @rows);
 
     push @{$self->{rows}}, $self->_divide_multiline(\@rows);
+}
+
+sub _check_set_header {
+    my $self = shift;
+
+    unless (exists $self->{width}) {
+        Carp::croak("Error: you should call 'set_header' method previously");
+    }
 }
 
 sub _check_argument {
@@ -119,6 +127,8 @@ sub _check_argument {
 
 sub add_row_line {
     my $self = shift;
+
+    $self->_check_set_header;
 
     my $line = bless [], 'Text::UnicodeTable::Simple::Line';
     push @{$self->{rows}}, $line;
