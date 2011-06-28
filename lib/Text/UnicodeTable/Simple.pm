@@ -142,7 +142,7 @@ sub add_row_line {
 
 sub draw {
     my $self = shift;
-    my $str;
+    my @ret;
 
     $self->_check_set_header;
 
@@ -150,28 +150,27 @@ sub draw {
     $self->_set_separater();
 
     # header
-    if (scalar $self->{header} != 0) {
-        $str .= $self->{separater};
-        $str .= $self->_generate_row_string($_) for @{$self->{header}};
-        $str .= $self->{separater};
-    }
+    push @ret, $self->{top_line};
+    push @ret, $self->_generate_row_string($_) for @{$self->{header}};
+    push @ret, $self->{separater};
 
     # body
-    for my $row (@{$self->{rows}}) {
+    my $row_length = scalar @{$self->{rows}};
+    for my $i (0..($row_length-1)) {
+        my $row = $self->{rows}->[$i];
+
         if (ref($row) eq 'ARRAY') {
-            $str .= $self->_generate_row_string($row);
+            push @ret, $self->_generate_row_string($row);
         } elsif ( ref($row) eq 'Text::UnicodeTable::Simple::Line') {
-            $str .= $self->{separater};
+            # if last line is row_line, it is ignored.
+            push @ret, $self->{separater} if $i != $row_length-1;
         }
     }
 
-    if (scalar @{$self->{rows}} != 0) {
-        unless (ref $self->{rows}->[-1] eq 'Text::UnicodeTable::Simple::Line') {
-            $str .= $self->{separater};
-        }
-    }
+    push @ret, $self->{bottom_line};
 
-    return $str;
+    my $str = join "\n", @ret;
+    return "$str\n";
 }
 
 sub _generate_row_string {
@@ -184,7 +183,6 @@ sub _generate_row_string {
         $str .= '|';
         $index++;
     }
-    $str .= "\n";
 
     return $str;
 }
