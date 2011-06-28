@@ -103,6 +103,24 @@ TABLE
 
 {
     my $t = Text::UnicodeTable::Simple->new();
+    $t->set_header("a\n123\ncdefg", "12\nabcd\n5");
+    $t->add_row("1234\nabc", "abcde\n56");
+
+    my $expected =<<'TABLE';
+.-------+-------.
+| a     |    12 |
+| 123   |  abcd |
+| cdefg |     5 |
++-------+-------+
+|  1234 | abcde |
+|   abc | 56    |
+'-------+-------'
+TABLE
+    is($t->draw, $expected, 'multiline');
+}
+
+{
+    my $t = Text::UnicodeTable::Simple->new();
 
     eval {
         $t->draw;
