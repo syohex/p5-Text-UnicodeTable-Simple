@@ -15,6 +15,7 @@ use Text::UnicodeTable::Simple;
 '---'
 TABLE
     is($t->draw, $expected, 'only header');
+    is("$t", $expected, 'overload stringify');
 }
 
 {
