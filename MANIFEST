@@ -1,5 +1,7 @@
 .gitignore
 Changes
+eg/csv2table.pl
+eg/japanese_sample.pl
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
@@ -16,4 +18,8 @@ MANIFEST			This list of files
 META.yml
 README
 t/00_compile.t
+t/01_header.t
+t/02_row.t
+t/03_private.t
+t/04_draw.t
 xt/pod.t
