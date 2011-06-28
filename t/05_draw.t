@@ -9,9 +9,10 @@ use Text::UnicodeTable::Simple;
     $t->set_header(qw/a/);
 
     my $expected =<<'TABLE';
-+---+
+.---.
 | a |
 +---+
+'---'
 TABLE
     is($t->draw, $expected, 'only header');
 }
@@ -22,11 +23,11 @@ TABLE
     $t->add_row(qw/aaa bbbb/);
 
     my $expected =<<'TABLE';
-+-----+------+
+.-----+------.
 | a   | b    |
 +-----+------+
 | aaa | bbbb |
-+-----+------+
+'-----+------'
 TABLE
     is($t->draw, $expected, 'header and row');
 }
@@ -38,12 +39,12 @@ TABLE
     $t->add_row(qw/4 12345/);
 
     my $expected =<<'TABLE';
-+-----+-------+
+.-----+-------.
 |   1 |     2 |
 +-----+-------+
 | aaa | bbbb  |
 |   4 | 12345 |
-+-----+-------+
+'-----+-------'
 TABLE
     is($t->draw, $expected, 'alignment');
 }
@@ -56,13 +57,13 @@ TABLE
     $t->add_row(qw/c d/);
 
     my $expected =<<'TABLE';
-+---+---+
+.---+---.
 | 1 | 2 |
 +---+---+
 | a | b |
 +---+---+
 | c | d |
-+---+---+
+'---+---'
 TABLE
     is($t->draw, $expected, 'add_row_line');
 }
@@ -74,11 +75,11 @@ TABLE
     $t->add_row_line();
 
     my $expected =<<'TABLE';
-+---+---+
+.---+---.
 | 1 | 2 |
 +---+---+
 | a | b |
-+---+---+
+'---+---'
 TABLE
     is($t->draw, $expected, 'ignore row_line after last row');
 }
@@ -91,11 +92,11 @@ TABLE
     $t->add_row(qw/あいうえお やゆよ/);
 
     my $expected =<<'TABLE';
-+------------+--------+
+.------------+--------.
 | a          | b      |
 +------------+--------+
 | あいうえお | やゆよ |
-+------------+--------+
+'------------+--------'
 TABLE
     is($t->draw, $expected, 'full width font');
 }
