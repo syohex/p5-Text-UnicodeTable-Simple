@@ -216,7 +216,9 @@ sub _set_separater {
         $str .= '+';
     }
 
-    $self->{separater} = "$str\n";
+    $self->{separater}    = $str;
+    ($self->{top_line}    = $str) =~ s{^\+(.*?)\+$}{.$1.};
+    ($self->{bottom_line} = $str) =~ s{^\+(.*?)\+$}{'$1'};
 }
 
 sub _get_column_length {
