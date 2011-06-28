@@ -343,12 +343,16 @@ Creates and returns a new table instance.
 =head3 set_header() [alias: addCols ]
 
 Set the headers for the table. (compare with <th> in HTML).
-Input strings should be String, not octet stream.
+You must call C<set_header> firstly. If you call other methods
+without calling C<set_header>, then you fail.
+
+Input strings should be B<string>, not B<octet stream>.
 
 =head3 add_row(@collist | \@collist) [alias: addRow ]
 
 Add one row to the table.
-Input strings should be String, not octet stream.
+
+Input strings should be B<string>, not B<octet stream>.
 
 =head3 add_row_line() [alias: addRowLine ]
 
@@ -357,6 +361,10 @@ Add a line after the current row.
 =head3 draw()
 
 Return a string of this table.
+
+=head2 Aliases
+
+Some methods have alias same as L<Text::ASCIITable>
 
 =head1 AUTHOR
 
