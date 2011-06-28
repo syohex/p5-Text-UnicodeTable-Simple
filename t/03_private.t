@@ -13,8 +13,8 @@ is($alignment, Text::UnicodeTable::Simple::ALIGN_RIGHT, "number alignment");
 $alignment = Text::UnicodeTable::Simple::_decide_alignment('  abc  ');
 is($alignment, Text::UnicodeTable::Simple::ALIGN_LEFT, "not number alignment");
 
-my @a = (1 3 5);
-my @b = (2 1 8);
+my @a = (1, 3, 5);
+my @b = (2, 1, 8);
 my @c = Text::UnicodeTable::Simple::_select_max(\@a, \@b);
 
 is_deeply(\@c, [2, 3, 8]);
