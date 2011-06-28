@@ -6,7 +6,7 @@ use Text::UnicodeTable::Simple;
 
 {
     my $t = Text::UnicodeTable::Simple->new();
-    ok($t, "constructor");
+    ok(defined($t), "constructor");
     isa_ok($t, "Text::UnicodeTable::Simple");
 
     can_ok($t, 'set_header');
