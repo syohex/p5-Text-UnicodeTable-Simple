@@ -325,14 +325,20 @@ Text::UnicodeTable::Simple - Create a formatted table using characters.
 =head1 SYNOPSIS
 
   use Text::UnicodeTable::Simple;
+  $t = Text::UnicodeTable::Simple->new();
+
 
 =head1 DESCRIPTION
 
-Text::UnicodeTable::Simple generate character table.
-This module can deal with B<Full Width Font>.
+Text::UnicodeTable::Simple create character table.
 
-L<Text::ASCIITable> is a nice module. But it cannot deal with Full width fonts,
-for example Japanese Hiragana, kanji, Hangle, Chinese.
+There are some module for creating text table at CPAN, L<Text::ASCIITable>,
+L<Text::SimpleTable>, L<Text::Table>. But those module deal with only ASCII,
+not full width fonts. If you use them with full width font, table created is
+bad-looking.
+
+This module resolves problem of full width fonts. So you can use
+Japansese Hiragana, Katakana, Korean Hangeul, Chinese Kanji characters.
 
 =head1 INTERFACE
 
@@ -366,7 +372,7 @@ Return a string of this table.
 
 =head2 Aliases
 
-Some methods have alias same as L<Text::ASCIITable>
+Some methods have alias same as L<Text::ASCIITable>.
 
 =head1 AUTHOR
 
