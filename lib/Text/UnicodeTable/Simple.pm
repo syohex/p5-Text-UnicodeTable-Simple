@@ -327,18 +327,40 @@ Text::UnicodeTable::Simple - Create a formatted table using characters.
   use Text::UnicodeTable::Simple;
   $t = Text::UnicodeTable::Simple->new();
 
+  $t->set_header(qw/Subject Score/);
+  $t->add_row('English',     '78');
+  $t->add_row('Mathematics', '91');
+  $t->add_row('Chemistry',   '64');
+  $t->add_row('Physics',     '95');
+  $t->add_row_line();
+  $t->add_row('', 'Total', '328');
+
+  print "$t";
+
+  # Result:
+  .-------------+-------.
+  | Subject     | Score |
+  +-------------+-------+
+  | English     |    78 |
+  | Mathematics |    91 |
+  | Chemistry   |    64 |
+  | Physics     |    95 |
+  +-------------+-------+
+  | Total       |   328 |
+  '-------------+-------'
 
 =head1 DESCRIPTION
 
 Text::UnicodeTable::Simple create character table.
 
 There are some module for creating text table at CPAN, L<Text::ASCIITable>,
-L<Text::SimpleTable>, L<Text::Table>. But those module deal with only ASCII,
-not full width fonts. If you use them with full width font, table created is
-bad-looking.
+L<Text::SimpleTable>, L<Text::Table> etc. But those module deal with only ASCII,
+not full width characters. If you use them with full width characters, table
+created is bad-looking.
 
-This module resolves problem of full width fonts. So you can use
-Japansese Hiragana, Katakana, Korean Hangeul, Chinese Kanji characters.
+Text::UnicodeTable::Simple resolves problem of full width characters.
+So you can use Japansese Hiragana, Katakana, Korean Hangeul, Chinese Kanji
+characters.
 
 =head1 INTERFACE
 
@@ -369,6 +391,8 @@ Add a line after the current row.
 =head3 draw()
 
 Return a string of this table.
+Text::UnicodeTable::Simple overload stringify operator,
+so you can omit C<->draw()> method.
 
 =head2 Aliases
 
