@@ -360,7 +360,7 @@ created is bad-looking.
 
 Text::UnicodeTable::Simple resolves problem of full width characters.
 So you can use Japansese Hiragana, Katakana, Korean Hangeul, Chinese Kanji
-characters.
+characters. See C<eg/> directory for Japanese examples.
 
 =head1 INTERFACE
 
@@ -390,13 +390,10 @@ Add a line after the current row.
 
 =head3 draw()
 
-Return a string of this table.
+Return the table as string.
+
 Text::UnicodeTable::Simple overload stringify operator,
-so you can omit C<->draw()> method.
-
-=head2 Aliases
-
-Some methods have alias same as L<Text::ASCIITable>.
+so you can omit C<-E<gt>draw()> method.
 
 =head1 AUTHOR
 
