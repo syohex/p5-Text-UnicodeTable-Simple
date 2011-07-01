@@ -355,8 +355,8 @@ Text::UnicodeTable::Simple create character table.
 
 There are some module for creating text table at CPAN, L<Text::ASCIITable>,
 L<Text::SimpleTable>, L<Text::Table> etc. But those module deal with only ASCII,
-not full width characters. If you use them with full width characters, table
-created is bad-looking.
+don't deal with full width characters. If you use them with full width
+characters, a table created may be bad-looking.
 
 Text::UnicodeTable::Simple resolves problem of full width characters.
 So you can use Japansese Hiragana, Katakana, Korean Hangeul, Chinese Kanji
