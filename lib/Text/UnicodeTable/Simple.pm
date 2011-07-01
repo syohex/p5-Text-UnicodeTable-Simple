@@ -333,7 +333,7 @@ Text::UnicodeTable::Simple - Create a formatted table using characters.
   $t->add_row('Chemistry',   '64');
   $t->add_row('Physics',     '95');
   $t->add_row_line();
-  $t->add_row('', 'Total', '328');
+  $t->add_row('Total', '328');
 
   print "$t";
 
