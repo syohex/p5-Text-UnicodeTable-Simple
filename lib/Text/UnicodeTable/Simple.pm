@@ -382,9 +382,19 @@ characters. See C<eg/> directory for Japanese examples.
 
 =head2 Methods
 
-=head3 new()
+=head3 new(%args)
 
-Creates and returns a new table instance.
+Creates and returns a new table instance with I<%args>.
+
+I<%args> might be
+
+=over
+
+=item border :Bool = True
+
+Table has no border if C<border> is False.
+
+=back
 
 =head3 set_header() [alias: addCols ]
 
@@ -399,6 +409,11 @@ Input strings should be B<string>, not B<octet stream>.
 Add one row to the table.
 
 Input strings should be B<string>, not B<octet stream>.
+
+=head3 add_rows(@collists)
+
+Add rows to the table. You can add row at one time.
+Each C<@collists> element should be ArrayRef.
 
 =head3 add_row_line() [alias: addRowLine ]
 
