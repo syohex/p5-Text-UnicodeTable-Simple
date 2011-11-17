@@ -24,11 +24,13 @@ use overload '""' => sub { shift->draw };
 }
 
 sub new {
-    my $class = shift;
+    my ($class, %args) = @_;
 
     bless {
         header => [],
         rows   => [],
+        border => 1,
+        %args,
     }, $class;
 }
 
@@ -155,9 +157,9 @@ sub draw {
     $self->_set_separator();
 
     # header
-    push @ret, $self->{top_line};
+    push @ret, $self->{top_line} if $self->{border};
     push @ret, $self->_generate_row_string($_) for @{$self->{header}};
-    push @ret, $self->{separator};
+    push @ret, $self->{separator} if $self->{border};
 
     # body
     my $row_length = scalar @{$self->{rows}};
@@ -172,7 +174,7 @@ sub draw {
         }
     }
 
-    push @ret, $self->{bottom_line};
+    push @ret, $self->{bottom_line} if $self->{border};
 
     my $str = join "\n", @ret;
     return "$str\n";
@@ -181,13 +183,17 @@ sub draw {
 sub _generate_row_string {
     my ($self, $row_ref) = @_;
 
-    my $str = "|";
+    my $separator = $self->{border} ? '|' : '';
+    my $str = $separator;
+
     my $index = 0;
     for my $row_elm (@{$row_ref}) {
         $str .= _format($row_elm, $self->_get_column_length($index));
-        $str .= '|';
+        $str .= $separator;
         $index++;
     }
+
+    $str =~ s{(^\s|\s$)}{}g if $self->{border};
 
     return $str;
 }
@@ -219,7 +225,7 @@ sub _set_separator {
         $str .= '+';
     }
 
-    $self->{separator}    = $str;
+    $self->{separator}    = $self->{border} ? $str : "";
     ($self->{top_line}    = $str) =~ s{^\+(.*?)\+$}{.$1.};
     ($self->{bottom_line} = $str) =~ s{^\+(.*?)\+$}{'$1'};
 }
