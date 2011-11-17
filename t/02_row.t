@@ -38,6 +38,23 @@ use Text::UnicodeTable::Simple;
 {
     my $t = Text::UnicodeTable::Simple->new();
 
+    can_ok($t, 'add_rows');
+    $t->set_header(qw/1 2 3 4/);
+    $t->add_rows(
+        [qw/a b c d/],
+        [qw/e f g/],
+    );
+
+    my @first_row = map { $_->text } @{$t->{rows}->[0]};
+    is_deeply(\@first_row, [qw/a b c d/], 'add row with add_rows method 1');
+
+    my @second_row = map { $_->text } @{$t->{rows}->[1]};
+    is_deeply(\@second_row, [qw/e f g/, ''], 'add row with add_rows method 2');
+}
+
+{
+    my $t = Text::UnicodeTable::Simple->new();
+
     can_ok($t, 'add_row_line');
     can_ok($t, 'addRowLine'); # alias
 
