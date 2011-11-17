@@ -16,9 +16,12 @@ use constant ALIGN_RIGHT => 2;
 use overload '""' => sub { shift->draw };
 
 # alias for Text::ASCIITable
-*setCols    = \&set_header;
-*addRow     = \&add_row;
-*addRowLine = \&add_row_line;
+{
+    no warnings 'once';
+    *setCols    = \&set_header;
+    *addRow     = \&add_row;
+    *addRowLine = \&add_row_line;
+}
 
 sub new {
     my $class = shift;
