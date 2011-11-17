@@ -22,4 +22,7 @@ t/01_header.t
 t/02_row.t
 t/03_private.t
 t/04_draw.t
-xt/pod.t
+t/05_draw_noborder.t
+xt/01_spelling.t
+xt/02_perlcritic.t
+xt/03_pod.t
