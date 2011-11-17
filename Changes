@@ -1,4 +1,8 @@
 Revision history for Perl extension Text::UnicodeTable::Simple
 
+0.02  2011-11-17
+        - add feature 'no border'
+        - add 'add_rows' method for adding row at one time
+
 0.01  2011-07-01
         - original version
