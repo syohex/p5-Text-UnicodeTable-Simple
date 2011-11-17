@@ -360,9 +360,9 @@ Text::UnicodeTable::Simple - Create a formatted table using characters.
 
 =head1 DESCRIPTION
 
-Text::UnicodeTable::Simple create character table.
+Text::UnicodeTable::Simple creates character table.
 
-There are some module for creating text table at CPAN, L<Text::ASCIITable>,
+There are some modules for creating a text table at CPAN, L<Text::ASCIITable>,
 L<Text::SimpleTable>, L<Text::Table> etc. But those module deal with only ASCII,
 don't deal with full width characters. If you use them with full width
 characters, a table created may be bad-looking.
