@@ -1,5 +1,6 @@
 use inc::Module::Install;
 use Module::Install::AuthorTests;
+use Module::Install::Repository;
 
 name 'Text-UnicodeTable-Simple';
 all_from 'lib/Text/UnicodeTable/Simple.pm';
