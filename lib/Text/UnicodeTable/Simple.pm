@@ -93,6 +93,13 @@ sub _adjust_cols {
     }
 }
 
+sub add_rows {
+    my ($self, @rows) = @_;
+
+    $self->add_row($_) for @rows;
+    return $self;
+}
+
 sub add_row {
     my $self = shift;
     my @rows = _check_argument(@_);
