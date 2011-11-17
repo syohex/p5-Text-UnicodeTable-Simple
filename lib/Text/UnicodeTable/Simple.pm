@@ -152,12 +152,12 @@ sub draw {
     $self->_check_set_header;
 
     $self->_set_column_length();
-    $self->_set_separater();
+    $self->_set_separator();
 
     # header
     push @ret, $self->{top_line};
     push @ret, $self->_generate_row_string($_) for @{$self->{header}};
-    push @ret, $self->{separater};
+    push @ret, $self->{separator};
 
     # body
     my $row_length = scalar @{$self->{rows}};
@@ -168,7 +168,7 @@ sub draw {
             push @ret, $self->_generate_row_string($row);
         } elsif ( ref($row) eq 'Text::UnicodeTable::Simple::Line') {
             # if last line is row_line, it is ignored.
-            push @ret, $self->{separater} if $i != $row_length-1;
+            push @ret, $self->{separator} if $i != $row_length-1;
         }
     }
 
@@ -209,7 +209,7 @@ sub _format {
     return $retval;
 }
 
-sub _set_separater {
+sub _set_separator {
     my $self = shift;
 
     my $each_row_width = $self->{column_length};
@@ -219,7 +219,7 @@ sub _set_separater {
         $str .= '+';
     }
 
-    $self->{separater}    = $str;
+    $self->{separator}    = $str;
     ($self->{top_line}    = $str) =~ s{^\+(.*?)\+$}{.$1.};
     ($self->{bottom_line} = $str) =~ s{^\+(.*?)\+$}{'$1'};
 }
