@@ -26,12 +26,23 @@ use overload '""' => sub { shift->draw };
 sub new {
     my ($class, %args) = @_;
 
-    bless {
+    my $header = delete $args{header};
+    if (defined $header && (ref $header ne 'ARRAY')) {
+        Carp::croak("'header' param should be ArrayRef");
+    }
+
+    my $self = bless {
         header => [],
         rows   => [],
         border => 1,
         %args,
     }, $class;
+
+    if (defined $header) {
+        $self->set_header($header);
+    }
+
+    $self;
 }
 
 sub set_header {
@@ -389,6 +400,11 @@ Creates and returns a new table instance with I<%args>.
 I<%args> might be
 
 =over
+
+=item header :ArrayRef
+
+Table header. If you set table header with constructor,
+you can omit C<set_header> method.
 
 =item border :Bool = True
 
