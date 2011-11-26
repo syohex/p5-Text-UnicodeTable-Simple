@@ -2,6 +2,7 @@ Revision history for Perl extension Text::UnicodeTable::Simple
 
 0.03  2011-11-26
         - add 'header' parameter to constructor
+        - add Chinese and Korean sample programs in eg/
 
 0.02  2011-11-17
         - add feature 'no border'

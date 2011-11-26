@@ -387,7 +387,7 @@ characters, a table created may be bad-looking.
 
 Text::UnicodeTable::Simple resolves problem of full width characters.
 So you can use Japansese Hiragana, Katakana, Korean Hangeul, Chinese Kanji
-characters. See C<eg/> directory for Japanese examples.
+characters. See C<eg/> directory for examples.
 
 =head1 INTERFACE
 
