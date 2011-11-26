@@ -50,6 +50,13 @@ use Text::UnicodeTable::Simple;
         $t->set_header(['apple'], ['orange']);
     };
     like($@, qr{Multiple ArrayRef arguments}, 'multiple ArrayRef');
+
+    eval {
+        my $t = Text::UnicodeTable::Simple->new(
+            header => "not ArrayRef",
+        );
+    };
+    like($@, qr{param should be ArrayRef}, 'header should be ArrayRef');
 }
 
 done_testing;
