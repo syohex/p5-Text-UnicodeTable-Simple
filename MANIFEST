@@ -1,7 +1,9 @@
 .gitignore
 Changes
+eg/chinese_sample.pl
 eg/csv2table.pl
 eg/japanese_sample.pl
+eg/korean_sample.pl
 inc/Module/Install.pm
 inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
