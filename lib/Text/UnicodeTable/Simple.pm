@@ -9,6 +9,7 @@ our $VERSION = '0.03';
 use Carp ();
 use Scalar::Util qw(looks_like_number);
 use Unicode::EastAsianWidth;
+use Term::ANSIColor ();
 
 use constant ALIGN_LEFT  => 1;
 use constant ALIGN_RIGHT => 2;
@@ -31,10 +32,12 @@ sub new {
         Carp::croak("'header' param should be ArrayRef");
     }
 
+    my $ansi_color = delete $args{ansi_color} || 0;
     my $self = bless {
-        header => [],
-        rows   => [],
-        border => 1,
+        header     => [],
+        rows       => [],
+        border     => 1,
+        ansi_color => $ansi_color,
         %args,
     }, $class;
 
@@ -206,7 +209,7 @@ sub _generate_row_string {
 
     my $index = 0;
     for my $row_elm (@{$row_ref}) {
-        $str .= _format($row_elm, $self->_get_column_length($index));
+        $str .= $self->_format($row_elm, $self->_get_column_length($index));
         $str .= $separator;
         $index++;
     }
@@ -217,11 +220,11 @@ sub _generate_row_string {
 }
 
 sub _format {
-    my ($cell, $width) = @_;
+    my ($self, $cell, $width) = @_;
 
     my $str = $cell->text;
     $str = " $str ";
-    my $len = _str_width($str);
+    my $len = $self->_str_width($str);
 
     my $retval;
     if ($cell->alignment == ALIGN_RIGHT) {
@@ -278,7 +281,7 @@ sub _column_length {
             next unless ref $matrix_ref->[$j] eq 'ARRAY';
 
             my $cell = $matrix_ref->[$j]->[$i];
-            my $len = _str_width($cell->text);
+            my $len = $self->_str_width($cell->text);
             $max = $len if $len > $max;
         }
 
@@ -305,7 +308,11 @@ sub _select_max {
 }
 
 sub _str_width {
-    my $str = shift;
+    my ($self, $str) = @_;
+
+    if ($self->{ansi_color}) {
+        $str = Term::ANSIColor::colorstrip($str);
+    }
 
     my $ret = 0;
     while ($str =~ /(?:(\p{InFullwidth}+)|(\p{InHalfwidth}+))/go) {
@@ -409,6 +416,10 @@ you can omit C<set_header> method.
 =item border :Bool = True
 
 Table has no border if C<border> is False.
+
+=item ansi_color :Bool = False
+
+Ignore ANSI color escape sequence
 
 =back
 

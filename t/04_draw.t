@@ -3,6 +3,7 @@ use warnings;
 
 use Test::More;
 use Text::UnicodeTable::Simple;
+use Term::ANSIColor qw(:constants);
 
 {
     my $t = Text::UnicodeTable::Simple->new();
@@ -118,6 +119,22 @@ TABLE
 '-------+-------'
 TABLE
     is($t->draw, $expected, 'multiline');
+}
+
+{
+    my $t = Text::UnicodeTable::Simple->new( ansi_color => 1 );
+    $t->set_header(qw/a b/);
+    $t->add_row(RED . "aaa" . RESET, GREEN . "bbbb" . RESET);
+
+    my $expected =<<'TABLE';
+.-----+------.
+| a   | b    |
++-----+------+
+| aaa | bbbb |
+'-----+------'
+TABLE
+    is(Term::ANSIColor::colorstrip($t->draw), $expected,
+       'contain ANSI color escape sequence');
 }
 
 {

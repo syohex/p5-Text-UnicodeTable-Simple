@@ -6,6 +6,7 @@ name 'Text-UnicodeTable-Simple';
 all_from 'lib/Text/UnicodeTable/Simple.pm';
 
 requires 'Unicode::EastAsianWidth' => '1.30';
+requires 'Term::ANSIColor';
 
 test_requires 'Test::More' => '0.88';
 
