@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::UnicodeTable::Simple
 
+0.04 2011-11-30
+        - add 'ansi_color' parameter to constructor
+          for table cell string which has ANSI color escape sequence
+
 0.03  2011-11-26
         - add 'header' parameter to constructor
         - add Chinese and Korean sample programs in eg/
