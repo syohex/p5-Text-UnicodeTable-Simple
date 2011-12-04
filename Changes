@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::UnicodeTable::Simple
 
+0.05 2011-12-05
+        - Fix dependency.
+            Required Term::ANSIColor >= 2.01
+
 0.04 2011-11-30
         - add 'ansi_color' parameter to constructor
           for table cell string which has ANSI color escape sequence
