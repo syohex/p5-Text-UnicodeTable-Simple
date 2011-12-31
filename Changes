@@ -1,5 +1,9 @@
 Revision history for Perl extension Text::UnicodeTable::Simple
 
+0.06 2011-12-31
+        - Fix spell check test of author tests
+        - Fix document.
+
 0.05 2011-12-04
         - Fix dependency.
             Required Term::ANSIColor >= 2.01
