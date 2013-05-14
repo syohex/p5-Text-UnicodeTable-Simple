@@ -73,13 +73,13 @@ without calling `set_header`, then you fail.
 
 Input strings should be __string__, not __octet stream__.
 
-### add\_row(@collist | \\@collist) \[alias: addRow \]
+### add\_row(@list\_of\_columns | \\@list\_of\_columns) \[alias: addRow \]
 
 Add one row to the table.
 
 Input strings should be __string__, not __octet stream__.
 
-### add\_rows(@collists)
+### add\_rows(@list\_of\_columns)
 
 Add rows to the table. You can add row at one time.
 Each `@collists` element should be ArrayRef.
