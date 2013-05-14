@@ -425,19 +425,19 @@ Ignore ANSI color escape sequence
 
 =head3 set_header() [alias: addCols ]
 
-Set the headers for the table. (compare with <th> in HTML).
+Set the headers for the table. (compare with E<lt>thE<gt> in HTML).
 You must call C<set_header> firstly. If you call other methods
 without calling C<set_header>, then you fail.
 
 Input strings should be B<string>, not B<octet stream>.
 
-=head3 add_row(@collist | \@collist) [alias: addRow ]
+=head3 add_row(@list_of_columns | \@list_of_columns) [alias: addRow ]
 
 Add one row to the table.
 
 Input strings should be B<string>, not B<octet stream>.
 
-=head3 add_rows(@collists)
+=head3 add_rows(@list_of_columns)
 
 Add rows to the table. You can add row at one time.
 Each C<@collists> element should be ArrayRef.
