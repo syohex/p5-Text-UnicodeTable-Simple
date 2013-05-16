@@ -1,6 +1,8 @@
 Revision history for Perl extension Text::UnicodeTable::Simple
 
 {{$NEXT}}
+
+0.08 2013-05-16T04:30:19Z
        - Convert Minilla
 
 0.07 2012-10-20
