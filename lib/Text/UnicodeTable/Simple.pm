@@ -34,7 +34,7 @@ sub new {
 
     my $alignment = delete $args{alignment};
     if (defined $alignment) {
-        unless ($alignment == ALIGN_RIGHT || $alignment || ALIGN_LEFT) {
+        unless ($alignment == ALIGN_RIGHT || $alignment == ALIGN_LEFT) {
             Carp::croak("'alignment' param should be ALIGN_LEFT or ALIGN_RIGHT");
         }
     }
