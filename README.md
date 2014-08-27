@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/syohex/p5-Text-UnicodeTable-Simple.png?branch=master)](https://travis-ci.org/syohex/p5-Text-UnicodeTable-Simple)
 # NAME
 
 Text::UnicodeTable::Simple - Create a formatted table using characters.
