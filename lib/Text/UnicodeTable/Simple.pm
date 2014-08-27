@@ -32,12 +32,20 @@ sub new {
         Carp::croak("'header' param should be ArrayRef");
     }
 
+    my $alignment = delete $args{alignment};
+    if (defined $alignment) {
+        unless ($alignment == ALIGN_RIGHT || $alignment || ALIGN_LEFT) {
+            Carp::croak("'alignment' param should be ALIGN_LEFT or ALIGN_RIGHT");
+        }
+    }
+
     my $ansi_color = delete $args{ansi_color} || 0;
     my $self = bless {
         header     => [],
         rows       => [],
         border     => 1,
         ansi_color => $ansi_color,
+        alignment  => $alignment,
         %args,
     }, $class;
 
@@ -81,7 +89,7 @@ sub _divide_multiline {
     for my $i (0..($longest-1)) {
         my @cells;
         for my $j (0..($self->{width}-1)) {
-            $alignments[$j] ||= _decide_alignment($each_lines[$j]->[$i]);
+            $alignments[$j] ||= $self->_decide_alignment($each_lines[$j]->[$i]);
             push @cells, Text::UnicodeTable::Simple::Cell->new(
                 text      => $each_lines[$j]->[$i],
                 alignment => $alignments[$j],
@@ -95,7 +103,9 @@ sub _divide_multiline {
 }
 
 sub _decide_alignment {
-    return looks_like_number($_[0]) ? ALIGN_RIGHT : ALIGN_LEFT;
+    my ($self, $str) = @_;
+    return $self->{alignment} if $self->{alignment};
+    return looks_like_number($str) ? ALIGN_RIGHT : ALIGN_LEFT;
 }
 
 sub _adjust_cols {
@@ -420,6 +430,11 @@ Table has no border if C<border> is False.
 =item ansi_color :Bool = False
 
 Ignore ANSI color escape sequence
+
+=item alignment :Int = Text::UnicodeTable::Simple::ALIGN_LEFT or ALIGN_RIGHT
+
+Alignment for each columns. Every columns are aligned by this if you
+specify this parameter.
 
 =back
 
