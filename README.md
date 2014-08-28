@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/syohex/p5-Text-UnicodeTable-Simple.png?branch=master)](https://travis-ci.org/syohex/p5-Text-UnicodeTable-Simple)
 # NAME
 
 Text::UnicodeTable::Simple - Create a formatted table using characters.
@@ -33,8 +34,8 @@ Text::UnicodeTable::Simple - Create a formatted table using characters.
 
 Text::UnicodeTable::Simple creates character table.
 
-There are some modules for creating a text table at CPAN, [Text::ASCIITable](http://search.cpan.org/perldoc?Text::ASCIITable),
-[Text::SimpleTable](http://search.cpan.org/perldoc?Text::SimpleTable), [Text::Table](http://search.cpan.org/perldoc?Text::Table) etc. But those module deal with only ASCII,
+There are some modules for creating a text table at CPAN, [Text::ASCIITable](https://metacpan.org/pod/Text::ASCIITable),
+[Text::SimpleTable](https://metacpan.org/pod/Text::SimpleTable), [Text::Table](https://metacpan.org/pod/Text::Table) etc. But those module deal with only ASCII,
 don't deal with full width characters. If you use them with full width
 characters, a table created may be bad-looking.
 
@@ -65,19 +66,24 @@ _%args_ might be
 
     Ignore ANSI color escape sequence
 
+- alignment :Int = 'left' or 'right'
+
+    Alignment for each columns. Every columns are aligned by this if you
+    specify this parameter.
+
 ### set\_header() \[alias: addCols \]
 
 Set the headers for the table. (compare with <th> in HTML).
 You must call `set_header` firstly. If you call other methods
 without calling `set_header`, then you fail.
 
-Input strings should be __string__, not __octet stream__.
+Input strings should be **string**, not **octet stream**.
 
 ### add\_row(@list\_of\_columns | \\@list\_of\_columns) \[alias: addRow \]
 
 Add one row to the table.
 
-Input strings should be __string__, not __octet stream__.
+Input strings should be **string**, not **octet stream**.
 
 ### add\_rows(@list\_of\_columns)
 
@@ -106,11 +112,11 @@ Copyright 2011- Syohei YOSHIDA
 
 # SEE ALSO
 
-[Text::ASCIITable](http://search.cpan.org/perldoc?Text::ASCIITable)
+[Text::ASCIITable](https://metacpan.org/pod/Text::ASCIITable)
 
-[Text::SimpleTable](http://search.cpan.org/perldoc?Text::SimpleTable)
+[Text::SimpleTable](https://metacpan.org/pod/Text::SimpleTable)
 
-[Text::Table](http://search.cpan.org/perldoc?Text::Table)
+[Text::Table](https://metacpan.org/pod/Text::Table)
 
 # LICENSE
 

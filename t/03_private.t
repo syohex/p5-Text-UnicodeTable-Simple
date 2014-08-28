@@ -7,10 +7,10 @@ use Text::UnicodeTable::Simple;
 my $t = Text::UnicodeTable::Simple->new();
 
 my $alignment;
-$alignment = Text::UnicodeTable::Simple::_decide_alignment('123');
+$alignment = $t->_decide_alignment('123');
 is($alignment, Text::UnicodeTable::Simple::ALIGN_RIGHT, "number alignment");
 
-$alignment = Text::UnicodeTable::Simple::_decide_alignment('  abc  ');
+$alignment = $t->_decide_alignment('  abc  ');
 is($alignment, Text::UnicodeTable::Simple::ALIGN_LEFT, "not number alignment");
 
 my @a = (1, 3, 5);
