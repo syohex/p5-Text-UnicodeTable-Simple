@@ -34,8 +34,13 @@ sub new {
 
     my $alignment = delete $args{alignment};
     if (defined $alignment) {
-        unless ($alignment == ALIGN_RIGHT || $alignment == ALIGN_LEFT) {
-            Carp::croak("'alignment' param should be ALIGN_LEFT or ALIGN_RIGHT");
+        unless ($alignment eq 'left' || $alignment eq 'right') {
+            Carp::croak("'alignment' param should be 'left' or 'right'");
+        }
+        if ($alignment eq 'left') {
+            $alignment = ALIGN_LEFT;
+        } else {
+            $alignment = ALIGN_RIGHT;
         }
     }
 
@@ -431,7 +436,7 @@ Table has no border if C<border> is False.
 
 Ignore ANSI color escape sequence
 
-=item alignment :Int = Text::UnicodeTable::Simple::ALIGN_LEFT or ALIGN_RIGHT
+=item alignment :Int = 'left' or 'right'
 
 Alignment for each columns. Every columns are aligned by this if you
 specify this parameter.

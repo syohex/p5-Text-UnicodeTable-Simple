@@ -6,7 +6,7 @@ use Text::UnicodeTable::Simple;
 
 {
     my $t = Text::UnicodeTable::Simple->new(
-        alignment => Text::UnicodeTable::Simple::ALIGN_RIGHT,
+        alignment => 'right',
     );
     $t->set_header(qw/1 2/);
     $t->add_row(qw/aaa bbbb/);
@@ -25,7 +25,7 @@ TABLE
 
 {
     my $t = Text::UnicodeTable::Simple->new(
-        alignment => Text::UnicodeTable::Simple::ALIGN_LEFT,
+        alignment => 'left',
     );
     $t->set_header(qw/1 2/);
     $t->add_row(qw/aaa bbbb/);
@@ -46,7 +46,7 @@ TABLE
     eval {
         Text::UnicodeTable::Simple->new(alignment => -1234);
     };
-    like $@, qr/should be ALIGN_LEFT or ALIGN_RIGHT/, 'invalud alignment param';
+    like $@, qr/should be 'left' or 'right'/, 'invalud alignment param';
 }
 
 done_testing;

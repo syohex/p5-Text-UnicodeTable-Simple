@@ -66,7 +66,7 @@ _%args_ might be
 
     Ignore ANSI color escape sequence
 
-- alignment :Int = Text::UnicodeTable::Simple::ALIGN\_LEFT or ALIGN\_RIGHT
+- alignment :Int = 'left' or 'right'
 
     Alignment for each columns. Every columns are aligned by this if you
     specify this parameter.
