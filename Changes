@@ -2,6 +2,9 @@ Revision history for Perl extension Text::UnicodeTable::Simple
 
 {{$NEXT}}
 
+0.10 2015-06-05T06:42:54Z
+       - No code changes, only document fix(Thanks trapple)
+
 0.09 2014-08-28T04:04:32Z
        - Add default alignment parameter
 
