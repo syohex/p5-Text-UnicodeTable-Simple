@@ -443,7 +443,7 @@ specify this parameter.
 
 =back
 
-=head3 set_header() [alias: addCols ]
+=head3 set_header() [alias: setCols ]
 
 Set the headers for the table. (compare with E<lt>thE<gt> in HTML).
 You must call C<set_header> firstly. If you call other methods
