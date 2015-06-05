@@ -71,7 +71,7 @@ _%args_ might be
     Alignment for each columns. Every columns are aligned by this if you
     specify this parameter.
 
-### set\_header() \[alias: addCols \]
+### set\_header() \[alias: setCols \]
 
 Set the headers for the table. (compare with <th> in HTML).
 You must call `set_header` firstly. If you call other methods
