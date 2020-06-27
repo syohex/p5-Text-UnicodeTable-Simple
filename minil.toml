@@ -1,2 +1,2 @@
 name = "Text-UnicodeTable-Simple"
-badges = ['travis']
+badges = ['github-actions/CI']
