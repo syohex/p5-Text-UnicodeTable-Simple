@@ -26,12 +26,6 @@
       ]
    },
    "prereqs" : {
-      "build" : {
-         "requires" : {
-            "ExtUtils::MakeMaker" : "6.59",
-            "Test::More" : "0.88"
-         }
-      },
       "configure" : {
          "requires" : {
             "Module::Build::Tiny" : "0.035"
@@ -51,6 +45,11 @@
             "Term::ANSIColor" : "2.01",
             "Unicode::EastAsianWidth" : "1.30",
             "perl" : "5.008001"
+         }
+      },
+      "test" : {
+         "requires" : {
+            "Test::More" : "0.88"
          }
       }
    },
