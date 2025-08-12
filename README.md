@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/syohex/p5-Text-UnicodeTable-Simple.svg?branch=master)](https://travis-ci.org/syohex/p5-Text-UnicodeTable-Simple)
+[![Actions Status](https://github.com/syohex/p5-Text-UnicodeTable-Simple/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/syohex/p5-Text-UnicodeTable-Simple/actions?workflow=CI)
 # NAME
 
 Text::UnicodeTable::Simple - Create a formatted table using characters.
@@ -34,8 +34,8 @@ Text::UnicodeTable::Simple - Create a formatted table using characters.
 
 Text::UnicodeTable::Simple creates character table.
 
-There are some modules for creating a text table at CPAN, [Text::ASCIITable](https://metacpan.org/pod/Text::ASCIITable),
-[Text::SimpleTable](https://metacpan.org/pod/Text::SimpleTable), [Text::Table](https://metacpan.org/pod/Text::Table) etc. But those module deal with only ASCII,
+There are some modules for creating a text table at CPAN, [Text::ASCIITable](https://metacpan.org/pod/Text%3A%3AASCIITable),
+[Text::SimpleTable](https://metacpan.org/pod/Text%3A%3ASimpleTable), [Text::Table](https://metacpan.org/pod/Text%3A%3ATable) etc. But those module deal with only ASCII,
 don't deal with full width characters. If you use them with full width
 characters, a table created may be bad-looking.
 
@@ -73,7 +73,7 @@ _%args_ might be
 
 ### set\_header() \[alias: setCols \]
 
-Set the headers for the table. (compare with <th> in HTML).
+Set the headers for the table. (compare with &lt;th> in HTML).
 You must call `set_header` firstly. If you call other methods
 without calling `set_header`, then you fail.
 
@@ -112,11 +112,11 @@ Copyright 2011- Syohei YOSHIDA
 
 # SEE ALSO
 
-[Text::ASCIITable](https://metacpan.org/pod/Text::ASCIITable)
+[Text::ASCIITable](https://metacpan.org/pod/Text%3A%3AASCIITable)
 
-[Text::SimpleTable](https://metacpan.org/pod/Text::SimpleTable)
+[Text::SimpleTable](https://metacpan.org/pod/Text%3A%3ASimpleTable)
 
-[Text::Table](https://metacpan.org/pod/Text::Table)
+[Text::Table](https://metacpan.org/pod/Text%3A%3ATable)
 
 # LICENSE
 
