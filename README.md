@@ -1,4 +1,4 @@
-[![Actions Status](https://github.com/syohex/p5-Text-UnicodeTable-Simple/actions/workflows/CI.yml/badge.svg?branch=master)](https://github.com/syohex/p5-Text-UnicodeTable-Simple/actions?workflow=CI)
+[![Actions Status](https://github.com/syohex/p5-Text-UnicodeTable-Simple/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/syohex/p5-Text-UnicodeTable-Simple/actions?workflow=test) [![MetaCPAN Release](https://badge.fury.io/pl/Text-UnicodeTable-Simple.svg)](https://metacpan.org/release/Text-UnicodeTable-Simple)
 # NAME
 
 Text::UnicodeTable::Simple - Create a formatted table using characters.

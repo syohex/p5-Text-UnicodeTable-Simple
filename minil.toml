@@ -1,2 +1,2 @@
 name = "Text-UnicodeTable-Simple"
-badges = ['github-actions/CI']
+badges = ['github-actions/test.yml', 'metacpan']
